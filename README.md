@@ -1,4 +1,4 @@
-# universe
+# universe-bg
 a simple universe bg plugin build with three.js
 
 ## demo
@@ -6,7 +6,8 @@ a simple universe bg plugin build with three.js
 
 ## install
 ```bash
-npm i universe
+npm i universe-bg
+bower install universe-bg
 ```
 
 ## use
