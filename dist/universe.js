@@ -1,6 +1,6 @@
 /**
  * universe
- * @version v0.0.1 - 2015-07-23
+ * @version v0.0.2 - 2015-07-23
  * @link http://html5beta.com/apps/universe.html
  * @author ZHAO Xudong (zxdong@gmail.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -26,7 +26,6 @@ Universe.defaults = {
 	,starNumber: 10000
 	,color: 0xffffff
 }
-
 
 Universe.prototype.init = function(_options) {
 

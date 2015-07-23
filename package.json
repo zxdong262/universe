@@ -1,7 +1,7 @@
 {
   "name": "universe",
   "description": "this plugin will draw simple universe in canvas with three.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "canvas",
     "three.js",
@@ -22,7 +22,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/zxdong262/cuniverse/blob/master/LICENSE"
+      "url": "https://github.com/zxdong262/universe/blob/master/LICENSE"
     }
   ],
   "dependencies": {},

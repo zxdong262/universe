@@ -19,7 +19,6 @@ Universe.defaults = {
 	,color: 0xffffff
 }
 
-
 Universe.prototype.init = function(_options) {
 
 	var options = _options || {}
