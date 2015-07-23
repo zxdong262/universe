@@ -1,7 +1,7 @@
 {
-  "name": "zxdong262/universe",
+  "name": "universe-bg",
   "description": "this plugin will draw simple universe in canvas with three.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "keywords": [
     "canvas",
     "three.js",
