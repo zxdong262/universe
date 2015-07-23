@@ -1,0 +1,12 @@
+[
+{
+	"name": "auth.long.tv"
+	,"script"     : "test/app.js"
+	,"instances"  : "1"
+	,"error_file" : "test/log/err.log"
+	,"out_file"   : "test/log/out.log"
+	,"pid_file"   : "test/log/child.pid"
+	,"exec_mode"  : "cluster_mode"
+	,"node_args" : "--harmony"
+}
+]

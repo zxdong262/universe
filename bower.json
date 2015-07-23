@@ -1,0 +1,33 @@
+{
+  "name": "universe",
+  "version": "0.0.1",
+  "homepage": "http://html5beta.com/apps/universe.html",
+  "author": {
+    "email": "zxdong@gmail.com",
+    "name": "ZHAO Xudong",
+    "url": "http://html5beta.com"
+  },
+  "description": "this plugin will draw simple universe in canvas with three.js",
+  "bugs": "https://github.com/zxdong262/universe/issues",
+  "main": "dist/universe.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "canvas",
+    "three.js",
+    "universe",
+    "webGL"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "three.js": "*"
+  }
+}
