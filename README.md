@@ -1,5 +1,5 @@
 # universe
-a simple universe bg plugin build with Three.js
+a simple universe bg plugin build with three.js
 
 ## demo
 <a href='http://html5beta.com/apps/universe.html'>http://html5beta.com/apps/universe.html</a>
