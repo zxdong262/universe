@@ -24,6 +24,7 @@ var uni = new Universe({
         ,color: 0xffffff
         ,width: null
         ,height: null
+        ,container: document.body
 })
 
 </script>

@@ -1,4 +1,3 @@
-
 /**
  * param:options, {Object}
  * options.id, {String}, 
@@ -21,6 +20,7 @@ Universe.defaults = {
 	,color: 0xffffff
 }
 
+
 Universe.prototype.init = function(_options) {
 
 	var options = _options || {}
@@ -40,10 +40,10 @@ Universe.prototype.init = function(_options) {
 	th.state = {
 		mouseX: 0
 		,mouseY: 0
-		,width: options.width || window.innerWidth
-		,height: options.height || window.innerHeight
-		,windowHalfX: (options.width || window.innerWidth)/2
-		,windowHalfY: (options.height || window.innerHeight)/2
+		,width: options.width || th.container.clientWidth
+		,height: options.height || th.container.clientHeight
+		,windowHalfX: th.container.clientWidth/2
+		,windowHalfY: th.container.clientHeight/2
 	}
 
 	//webgl
@@ -169,10 +169,10 @@ Universe.prototype.onWindowResize = function() {
 	var th = this
 
 	return function() {
-		th.state.width = window.innerWidth
-		th.state.height = window.innerHeight
-		th.state.windowHalfX = window.innerWidth / 2
-		th.state.windowHalfY = window.innerHeight / 2
+		th.state.width = th.container.clientWidth
+		th.state.height = th.container.clientHeight
+		th.state.windowHalfX = th.container.clientWidth / 2
+		th.state.windowHalfY = th.container.clientHeight / 2
 
 		th.renderer.setSize( th.state.width, th.state.height )
 		th.camera.aspect = th.state.width / th.state.height 
