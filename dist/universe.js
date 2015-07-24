@@ -1,6 +1,6 @@
 /**
  * universe-bg
- * @version v0.0.9 - 2015-07-24
+ * @version v0.0.10 - 2015-07-24
  * @link http://html5beta.com/apps/universe.html
  * @author ZHAO Xudong (zxdong@gmail.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
