@@ -1,6 +1,6 @@
 /**
  * universe-bg
- * @version v0.0.10 - 2015-07-24
+ * @version v0.0.11 - 2015-07-24
  * @link http://html5beta.com/apps/universe.html
  * @author ZHAO Xudong (zxdong@gmail.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -13,7 +13,9 @@
  * options.size, {Int}, 1-..., star size default = 5.0
  * options.starNumber {Int} default = 10000
  * options.color default = 0xffffff
+ * options.caontainer continer of canvas ,default = document.body
  */
+
 
 function Universe(options) {
 	this.init(options)
@@ -64,8 +66,7 @@ Universe.prototype.init = function(_options) {
 		vertex.x = THREE.Math.randFloatSpread( 4000 )
 		vertex.y = THREE.Math.randFloatSpread( 4000 )
 		vertex.z = THREE.Math.randFloatSpread( 4000 )
-		var sphere = new THREE.Math.Sphere(vertex, th.options.size/2)
-		geometry.vertices.push( sphere )
+		geometry.vertices.push( vertex )
 
 	}
 
