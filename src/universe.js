@@ -5,6 +5,7 @@
  * options.starNumber {Int} default = 10000
  * options.color default = 0xffffff
  * options.caontainer continer of canvas ,default = document.body
+ * options.map star map such as THREE.ImageUtils.loadTexture( 'star.png' ), default is null
  */
 
 
@@ -31,6 +32,7 @@ Universe.prototype.init = function(_options) {
 		,id: options.id
 		,starNumber: options.starNumber || Universe.defaults.starNumber
 		,color: options.color || Universe.defaults.color
+		,map: options.map
 	}
 
 	th.container = options.container || document.body
@@ -62,7 +64,13 @@ Universe.prototype.init = function(_options) {
 
 	}
 
-	var particles = new THREE.PointCloud( geometry, new THREE.PointCloudMaterial( { color: options.color, size: options.size } ) )
+	var sprite = THREE.ImageUtils.loadTexture( 'star.png' )
+	var particles = new THREE.PointCloud( geometry, new THREE.PointCloudMaterial({
+		color: options.color
+		,size: options.size
+		,map: th.options.map || null
+		,transparent: true
+	}))
 
 	th.scene.add( particles )
 
@@ -79,12 +87,14 @@ Universe.prototype.render = function() {
 
 	var r = Date.now() * 0.0005
 	var th = this
+	var ratioH = th.state.height/500*0.02
+	var ratioW = th.state.width/1000*0.02
 
 	th.camera.fov = 35 + 90 * Math.sin( 0.5 * r )
 	th.camera.updateProjectionMatrix()
 
-	th.camera.position.x += ( th.state.mouseX - th.camera.position.x ) * 0.02
-	th.camera.position.y += ( - th.state.mouseY - th.camera.position.y ) * 0.02
+	th.camera.position.x += ( th.state.mouseX - th.camera.position.x ) * ratioH
+	th.camera.position.y += ( - th.state.mouseY - th.camera.position.y ) * ratioW
 	th.camera.lookAt( th.scene.position )
 
 	th.renderer.clear()

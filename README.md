@@ -25,6 +25,7 @@ var uni = new Universe({
         ,width: null
         ,height: null
         ,container: document.body
+        ,map: null //star map such as THREE.ImageUtils.loadTexture( 'star.png' )
 })
 
 </script>

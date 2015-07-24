@@ -35,7 +35,7 @@ gulp.task('clean:test', function() {
 		.pipe(clean())
 })
 gulp.task('clean:dist', function() {
-	return gulp.src([src.dist + '/*'], {read: false})
+	return gulp.src([src.dist + '/*.js'], {read: false})
 		.pipe(clean())
 })
 

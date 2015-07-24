@@ -8,6 +8,7 @@ html
 				margin: 0;
 				padding: 0;
 				overflow: hidden;
+				height: 1000px;
 			}
 
 			canvas {
@@ -18,7 +19,10 @@ html
 		script(src='three.js/three.js')
 		script(src='universe.js')
 		script.
-			var uni = new Universe()
+			var uni = new Universe({
+					size: 10
+					,map: THREE.ImageUtils.loadTexture( 'star.png' )
+				})
 		script.
 			/*
 			var SCREEN_WIDTH = window.innerWidth;
