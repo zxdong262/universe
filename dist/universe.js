@@ -1,6 +1,6 @@
 /**
  * universe-bg
- * @version v0.2.1 - 2015-07-24
+ * @version v0.2.2 - 2015-07-28
  * @link http://html5beta.com/apps/universe.html
  * @author ZHAO Xudong (zxdong@gmail.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -71,8 +71,7 @@ Universe.prototype.init = function(_options) {
 		geometry.vertices.push( vertex )
 
 	}
-
-	var sprite = THREE.ImageUtils.loadTexture( 'star.png' )
+	
 	var particles = new THREE.PointCloud( geometry, new THREE.PointCloudMaterial({
 		color: options.color
 		,size: options.size

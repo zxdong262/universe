@@ -63,8 +63,7 @@ Universe.prototype.init = function(_options) {
 		geometry.vertices.push( vertex )
 
 	}
-
-	var sprite = THREE.ImageUtils.loadTexture( 'star.png' )
+	
 	var particles = new THREE.PointCloud( geometry, new THREE.PointCloudMaterial({
 		color: options.color
 		,size: options.size
