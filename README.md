@@ -7,6 +7,7 @@ a simple universe bg plugin build with three.js
 ## install
 ```bash
 npm i universe-bg
+# or
 bower install universe-bg
 ```
 
@@ -16,21 +17,39 @@ bower install universe-bg
 <script>
 var uni = new Universe()
 
-//or with options
-var uni = new Universe({
-        size: 5 //star size
-        ,id: null //id
-        ,starNumber: 10000
-        ,color: 0xffffff
-        ,width: null
-        ,height: null
-        ,container: document.body
-        ,map: null //star map such as THREE.ImageUtils.loadTexture( 'star.png' )
-})
+// instantiate a loader
+var loader = new THREE.TextureLoader()
+
+// load a resource
+loader.load(
+	// resource URL
+	'/_dist/star.png',
+	// Function when resource is loaded
+	function ( texture ) {
+    
+                let uni = new Universe({
+                        size: 5 //star size
+                        ,id: null //id
+                        ,starNumber: 10000
+                        ,color: 0xffffff
+                        ,width: null
+                        ,height: null
+                        ,container: document.getElementById('wrapper')
+                        ,map: texture
+                })
+
+	}
+)
 
 </script>
 ```
 
+or
+
+```js
+import Universe from 'universe-bg'
+//const Universe = require('universe-bg')
+```
 
 ## LICENCE
 
