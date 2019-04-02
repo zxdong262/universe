@@ -33,3 +33,4 @@ build/Release
 /bower_components/
 /temp/
 *.rdb
+/package-lock.json

@@ -1,5 +1,5 @@
 {
-  "name": "universe-bg",
+  "name": "@electerm/electerm-bg",
   "scripts": {
     "start": "./node_modules/.bin/npm-run-all -p dev:server dev:client ",
     "build": "rm dist/*.js && NODE_ENV=production ./node_modules/.bin/webpack -p --progress",
