@@ -1,49 +1,56 @@
 const webpack = require('webpack')
-const OpenBrowserPlugin = require('open-browser-webpack-plugin')
-const configSys = require('./build/config')
+const configSys = require('./config')
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin')
-const pack = require('./package.json')
-const today = new Date().toISOString().substr(0, 10) 
-const ip = require('ip').address()
+const pack = require('../package.json')
+const today = new Date().toISOString().substr(0, 10)
+const ip = 'localhost'
+const { resolve } = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-let config = {
+const from = resolve(
+  __dirname,
+  '../src/img'
+)
+const to1 = resolve(
+  __dirname,
+  '../dist'
+)
+
+const config = {
+  mode: 'development',
   entry: {
-    'universe': ['./src/universe.js'],
-    app: './src/index.js'
+    universe: resolve(__dirname, '../src/universe.js'),
+    app: resolve(__dirname, '../src/index.js')
   },
   output: {
-    path: __dirname + '/dist/', //输出文件目录
-    filename: '[name].bundle.js', //输出文件名
+    path: resolve(__dirname, '../dist'), // 输出文件目录
+    filename: '[name].bundle.js', // 输出文件名
     libraryTarget: 'var',
     publicPath: '/'
   },
   watch: true,
   externals: {
-    'three': 'Three'
+    three: 'Three'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader'
+      loader: 'babel-loader?cacheDirectory',
+      options: {
+        babelrc: true
+      }
     }]
   },
   devtool: '#eval-source-map',
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: `http://${ip}:${configSys.port}` })
-  ],
   devServer: {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
     },
-    historyApiFallback: true,
+    disableHostCheck: true,
     hot: true,
-    inline: true,
-    progress: true,
     host: ip,
-    watch: true,
+    open: true,
     port: configSys.port,
     proxy: {
       '*': {
@@ -61,28 +68,28 @@ let config = {
         }
       }
     }
-  },
+  }
 }
 
-if (process.env.NODE_ENV === 'production') {
+console.log('process.env.NODE_ENV', process.env.NODE_ENV)
 
+if (process.env.NODE_ENV === 'production') {
+  config.mode = 'production'
+  delete config.watch
+  delete config.devtool
+  delete config.devServer
+  config.optimization = {
+    minimize: true
+  }
   config.plugins = [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': "'production'"
-      }
-    }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: true,
-      compress: {
-        warnings: false, // Suppress uglification warnings
-      }
-    }),
+    new CopyWebpackPlugin([{
+      from,
+      to: to1,
+      force: true
+    }], {}),
     new UnminifiedWebpackPlugin(),
-    new webpack.BannerPlugin(
-      `
+    new webpack.BannerPlugin({
+      banner: `
 /**
  * ${pack.name}
  * @version v${pack.version} - ${today}
@@ -90,17 +97,18 @@ if (process.env.NODE_ENV === 'production') {
  * @author ${pack.author.name} (${pack.author.email})
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
-      `
-      , { raw: true })
+      `,
+      raw: true
+    })
   ]
 
   config.entry = {
-    'universe': './src/universe.js'
+    universe: './src/universe.js'
   }
 
   config.output = {
-    path: __dirname + '/dist/', //输出文件目录
-    filename: '[name].min.js', //输出文件名
+    path: resolve(__dirname, '../dist'), // 输出文件目录
+    filename: '[name].min.js', // 输出文件名
     libraryTarget: 'umd',
     publicPath: '/',
     library: 'Universe'
@@ -116,8 +124,6 @@ if (process.env.NODE_ENV === 'production') {
   }
 
   config.devtool = 'source-map'
-
 }
-
 
 module.exports = config

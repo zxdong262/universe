@@ -1,17 +1,34 @@
-include parts/head1
-meta(name='description', content=siteDesc)
-meta(name='keywords', content=siteKeywords)
-title #{siteName}
-style.
-	#wrapper {
-		position: absolute;
-		left: 0;
-		top: 0;
-		bottom: 0;
-		right: 0;
-	}
-include parts/head2
-#wrapper
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='x-ua-compatible' content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title #{title}
+    style.
+      #wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+      }
+  body
+    #wrapper
+    #content-loading(style='text-align:center;padding:30px;font-size:24px') loading...
+    footer#footer
+      hr
+      p
+        | &copy; 2016
+        | by
+        a(href='http://html5beta.com', target='_blank') ZHAO Xudong
 
-include parts/footer-js
-include parts/footer-end
+
+    script.
+      window.rc = {}
+    script.
+      window.rc.onload = function() {
+        document.body.removeChild(document.getElementById('content-loading'));
+      };
+    script(src=cdn + '/_bc/three/build/three.js')
+    script(src=`http://${ip}:${port}/app.bundle.js`, onload='window.rc.onload()')

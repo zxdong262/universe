@@ -2,32 +2,30 @@
  * TEST SERVER
  **/
 
+const Koa = require('koa')
+const serve = require('koa-static')
+const config = require('./config')
+const port = config.devServerPort
+const oneYear = 1000 * 60 * 60 * 24 * 365
 
-const
-  koa = require('koa'),
-  serve = require('koa-static'),
-  config = require('./config'),
-  port = config.devServerPort,
-  oneYear = 1000 * 60 * 60 * 24 * 365,
+const app = new Koa()
+const mount = require('koa-mount')
+const path = require('path')
+const Pug = require('koa-pug')
+const isProduction = false
+const Router = require('koa-router')
+const router = new Router()
+const pack = require('../package.json')
+const ip = 'localhost'
+const glob = {}
 
-  app = koa(),
-  mount = require('koa-mount'),
-  path = require('path'),
-  Pug = require('koa-pug'),
-  isProduction = false,
-  cwd = process.cwd(),
-  Router = require('koa-router'),
-  router = new Router(),
-  pack = require('../package.json'),
-  ip = require('ip').address()
-
-//static files
-app.use(function*(next) {
-  this.set('Access-Control-Allow-Origin', '*')
-  yield next
+// static files
+app.use(async (ctx, next) => {
+  ctx.set('Access-Control-Allow-Origin', '*')
+  await next()
 })
 
-app.use(serve(path.resolve(__dirname, '../static'), {
+app.use(serve(path.resolve(__dirname, '../src'), {
   maxAge: oneYear
 }))
 
@@ -49,31 +47,31 @@ app.use(
   )
 )
 
-router.get('/', function* (next) {
-  this.render('index', {
+// pug template
+glob.pug = new Pug({
+  viewPath: path.resolve(__dirname, 'views'),
+  debug: !isProduction,
+  pretty: !isProduction,
+  compileDebug: !isProduction,
+  noCache: true,
+  app // equals to pug.use(app) and app.use(pug.middleware)
+})
+
+router.get('/', async (ctx) => {
+  await ctx.render('index', {
     siteName: pack.name,
     siteDesc: pack.description,
     siteKeywords: pack.keywords.join(','),
     cdn: `http://${ip}:${port}`,
     port: config.port,
     ip
-  })
+  }, true)
 })
 
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-//pug template
-const pug = new Pug({
-  viewPath: 'build/views',
-  debug: !isProduction,
-  pretty: !isProduction,
-  compileDebug: !isProduction,
-  noCache: true,
-  app: app // equals to pug.use(app) and app.use(pug.middleware)
-})
-
-//start
-app.listen(port, ip, function() {
-  console.log(new Date() + ' ' + pack.name + ' runs on port ' + port)
+// start
+app.listen(port, ip, function () {
+  console.log(new Date() + ' ' + pack.name + ' runs on ' + `http://${ip}:${port}`)
 })
