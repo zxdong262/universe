@@ -6,7 +6,7 @@ var loader = new window.THREE.TextureLoader()
 // load a resource
 loader.load(
   // resource URL
-  '/star.png',
+  '/img/star.png',
   // Function when resource is loaded
   function (texture) {
     return new Universe({
@@ -17,7 +17,8 @@ loader.load(
       width: null,
       height: null,
       container: document.getElementById('wrapper'),
-      map: texture
+      map: texture,
+      background: '#0088cc'
     })
   }
 )

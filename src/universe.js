@@ -31,7 +31,8 @@ export default class Universe {
       id: options.id,
       starNumber: options.starNumber || Universe.defaults.starNumber,
       color: options.color || Universe.defaults.color,
-      map: options.map
+      map: options.map,
+      background: options.background
     }
 
     th.container = options.container || document.body
@@ -49,6 +50,7 @@ export default class Universe {
 
     // webgl
     th.scene = new THREE.Scene()
+    console.log('bg', options.background, options)
     th.scene.background = new THREE.Color(options.background || '#000000')
     th.camera = new THREE.PerspectiveCamera(50, th.state.width / th.state.height, 150, 4000)
 

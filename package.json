@@ -1,7 +1,7 @@
 {
   "name": "universe-bg",
   "description": "this plugin will draw simple universe in canvas with three.js",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "scripts": {
     "start": "npm run s",
     "build": "rm -rf dist && NODE_ENV=production ./node_modules/.bin/webpack --progress --config build/webpack.config.js",
