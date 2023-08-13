@@ -4,7 +4,7 @@ a simple universe bg plugin build with three.js
 
 ## demo
 
-[http://html5beta.com/apps/universe.html](http://html5beta.com/apps/universe.html)
+[http://html5beta.com/apps/universe-bg/](http://html5beta.com/apps/universe-bg/)
 
 ## install
 
@@ -12,69 +12,34 @@ a simple universe bg plugin build with three.js
 npm i universe-bg
 ```
 
-## use
-
-```html
-<script src='//unpkg.com/three/build/three.min.js'></script>
-<script src='//unpkg.com/universe-bg/dist/universe.min.js'></script>
-<script>
-// instantiate a loader
-var loader = new THREE.TextureLoader()
-var Universe = window.Universe.default
-// load a resource
-loader.load(
-  // resource URL
-  '//unpkg.com/universe-bg/dist/star.png',
-  // Function when resource is loaded
-  function ( texture ) {
-
-    let uni = new Universe({
-      size: 5, //star size
-      id: null, //id
-      starNumber: 10000,
-      color: 0xffffff,
-      width: null,
-      height: null,
-      background: '#000000',
-      container: document.getElementById('wrapper'),
-      map: texture
-    })
-
-  }
-)
-
-</script>
-```
-
-or
+## Use
 
 ```js
-import Universe from 'universe-bg'
-// instantiate a loader
-var loader = new THREE.TextureLoader()
-// load a resource
-loader.load(
-  // resource URL
-  '//unpkg.com/universe-bg/dist/star.png',
-  // Function when resource is loaded
-  function ( texture ) {
+import UniverseBg from 'universe-bg'
 
-    let uni = new Universe({
-      size: 5 //star size
-      ,id: null //id
-      ,starNumber: 10000
-      ,color: 0xffffff
-      ,width: null
-      ,height: null
-      ,container: document.getElementById('wrapper')
-      ,map: texture
-    })
+const inst = new UniverseBg({
+  id: ''
+  className:  '',
+  starSize: 0.1,
+  shootingStarSize: 0.2,
+  starCount: 10000,
+  shootingStarCount: 30,
+  starDistance: 100,
+  shootingStarDistance: 50,
+  starColor: 0xffffff,
+  shootingStarColor: 0xffffff,
+  bgColor: 0x000000
+})
 
-  }
-)
+```
+
+Could use cdn
+
+```html
+<script src='//www.unpkg.com/three@0.155.0/build/three.min.js'></script>
+<script src='//unpkg.com/universe-bg/dist/universe-bg.min.js'></script>
 ```
 
 ## LICENCE
 
 MIT
-

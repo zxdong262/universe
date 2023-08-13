@@ -34,3 +34,4 @@ build/Release
 /temp/
 *.rdb
 /dist/
+/esm/
