@@ -36,8 +36,31 @@ const inst = new UniverseBg({
 Could use cdn
 
 ```html
-<script src='//www.unpkg.com/three@0.155.0/build/three.min.js'></script>
-<script src='//unpkg.com/universe-bg/dist/universe-bg.min.js'></script>
+<script async="" src="//unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.155.0/build/three.module.js",
+    "universe-bg": "//unpkg.com/universe-bg/dist/universe-bg.mjs"
+  }
+}
+</script>
+
+<script type="module">
+  import UniverseBg from 'universe-bg'
+  window.x = new UniverseBg({
+    className: 'animate',
+    // shootingStarCount: 150,
+    // starCount: 1000,
+    // starSize: 30,
+    shootingStarSize: 0.4,
+    shootingStarColor: 0x666666,
+    starColor: 0x666666,
+    bgColor: 0xffffff
+    // starDistance: 80,
+    // shootingStarDistance: 40
+  })
+</script>
 ```
 
 ## LICENCE
