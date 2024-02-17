@@ -37,7 +37,7 @@ Could use cdn
 
 ```html
 <style>
-.animate,#main {
+.animate {
   position: fixed;
   left: 0;
   right: 0;
